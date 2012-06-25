@@ -13,11 +13,15 @@ public class TestThreads extends Thread {
 		this.id = id;
 	}
 	public void run(){
-		try{
-			Thread.sleep(2000);
-		}catch(InterruptedException e){
-			e.printStackTrace();
-		}
+//		try{
+			for(int i = 0 ;i < 10000; i++){
+				System.out.println(id +"is busy!!");
+				Thread.yield();
+			}
+			
+//		}catch(InterruptedException e){
+//			e.printStackTrace();
+//		}
 		System.out.println(id + "woke up");
 		
 	}
@@ -29,8 +33,10 @@ public class TestThreads extends Thread {
 		TestThreads[] tarray = new TestThreads[10];
 		for (int i = 1 ; i <= tarray.length; i++){
 			tarray[i-1] = new TestThreads(i);
+			tarray[i-1].setPriority(i);
 			tarray[i-1].start();
 		}
+		System.out.println("hello");
 	}
 	
 	public static void main(String args[]){
