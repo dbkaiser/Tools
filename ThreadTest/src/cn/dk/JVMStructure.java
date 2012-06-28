@@ -2,6 +2,7 @@ package cn.dk;
 
 public class JVMStructure {
 
+	private static int m = 22;
 	
 	public String getUser1() {
 		int result = 3+ 4;
@@ -26,7 +27,17 @@ public class JVMStructure {
 	private String user1;
 	private String user2;
 	
+	
 	public static void main(String args[]){
+		
+		try {
+			Class jvmClass = Class.forName("cn.dk.JVMStructure");
+			ClassLoader c = jvmClass.getClassLoader();
+			System.out.println(c);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		JVMStructure jv = new JVMStructure();
 		jv.setUser1("doug");
 		jv.setUser2("hulia");
